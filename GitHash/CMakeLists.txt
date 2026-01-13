@@ -7,3 +7,8 @@ cmake_minimum_required (VERSION 3.10)
 add_executable (GitHash "GitHash.cpp" "GitHash.h")
 
 # TODO: Add tests and install targets if needed.
+# CMakeList.txt : Top-level CMake project file, do global configuration
+# and include sub-projects here.
+
+
+

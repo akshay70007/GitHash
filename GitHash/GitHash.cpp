@@ -1,15 +1,38 @@
-﻿// GitHash.cpp : Defines the entry point for the application.
-//
-
-#include "GitHash.h"
-#include "version.h"
+﻿// GitHash.cpp : Entry point
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-//extern const char GIT_COMMIT_HASH[];
+static std::string g_commit_hash;
 
-int main()
+
+void parse_commit(int argCount, char* argValue[])
 {
-	cout << "Git Commit Hash \n" << GIT_COMMIT_HASH<<endl;
-	return 0;
+    for (int i = 1; i < argCount; i++)
+    {
+        string arg = argValue[i];
+
+        if (arg.rfind("--commit=", 0) == 0)
+        {
+            g_commit_hash = arg.substr(9); 
+        }
+    }
+}
+
+int main(int argCount, char* argValue[])
+{
+    parse_commit(argCount, argValue);
+
+    if (g_commit_hash.empty())
+    {
+        cout << "Commit hash not provided\n";
+        cout << "Usage: GitHash --commit=<hash>\n";
+        return 1;
+    }
+
+    cout << "Git Commit Hash:\n"
+        << g_commit_hash << endl;
+
+    return 0;
 }

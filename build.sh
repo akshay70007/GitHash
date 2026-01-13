@@ -1,46 +1,66 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e
 
-# -------------------------------
-# Configuration
-# -------------------------------
-BUILD_TYPE=${1:-Release}   # Default: Release
-BUILD_DIR=build
-
-echo "=============================="
-echo " Build type : $BUILD_TYPE"
-echo " Build dir  : $BUILD_DIR"
-echo "=============================="
-
-# -------------------------------
-# Check tools
-# -------------------------------
-command -v cmake >/dev/null 2>&1 || {
-    echo "ERROR: cmake not found"
+# ------------------------------
+# Validate argument
+# ------------------------------
+if [ -z "$1" ]; then
+    echo "❌ Missing argument"
+    echo "Usage:"
+    echo "  ./build.sh Debug"
+    echo "  ./build.sh Release"
+    echo "  ./build.sh Clean"
     exit 1
-}
+fi
 
-command -v git >/dev/null 2>&1 || {
-    echo "WARNING: git not found (commit hash will be 'unknown')"
-}
+# ------------------------------
+# CLEAN (removes all builds)
+# ------------------------------
+if [[ "$1" == "Clean" ]]; then
+    echo "=============================="
+    echo "Cleaning ALL build artifacts"
+    echo "=============================="
 
-# -------------------------------
-# Create build directory
-# -------------------------------
-mkdir -p "$BUILD_DIR"
-cd "$BUILD_DIR"
+    rm -rf build
+    echo "Build directory removed"
+    exit 0
+fi
 
-# -------------------------------
-# Configure
-# -------------------------------
-cmake .. \
-    -DCMAKE_BUILD_TYPE="$BUILD_TYPE"
-
-# -------------------------------
-# Build
-# -------------------------------
-cmake --build . --parallel
+# ------------------------------
+# BUILD TYPE
+# ------------------------------
+if [[ "$1" == "Debug" || "$1" == "Release" ]]; then
+    BUILD_TYPE=$1
+else
+    echo "❌ Invalid argument: $1"
+    echo "Usage:"
+    echo "  ./build.sh Debug"
+    echo "  ./build.sh Release"
+    echo "  ./build.sh Clean"
+    exit 1
+fi
 
 echo "=============================="
-echo " Build completed successfully"
+echo "Building GitHash"
+echo "Build type : $BUILD_TYPE"
+echo "=============================="
+
+# ------------------------------
+# Create build directory
+# ------------------------------
+mkdir -p build
+cd build
+
+# ------------------------------
+# Configure (single-config safe)
+# ------------------------------
+cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..
+
+# ------------------------------
+# Build ONLY requested config
+# ------------------------------
+cmake --build .
+
+echo "=============================="
+echo "Build completed successfully"
 echo "=============================="
