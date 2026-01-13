@@ -2,11 +2,14 @@
 //
 
 #include "GitHash.h"
+#include "version.h"
 
 using namespace std;
 
+//extern const char GIT_COMMIT_HASH[];
+
 int main()
 {
-	cout << "Hello CMake." << endl;
+	cout << "Git Commit Hash \n" << GIT_COMMIT_HASH<<endl;
 	return 0;
 }
