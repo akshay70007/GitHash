@@ -1,3 +1,6 @@
 # ninja log v5
-1	527	7899904614190002	GitHash/CMakeFiles/GitHash.dir/GitHash.cpp.obj	6afde8b42c89d1e3
-529	1282	7899904621618523	GitHash/GitHash.exe	70fbfc6faee7fea4
+1	392	7899911849521779	GitHash/CMakeFiles/GitHash.dir/GitHash.cpp.obj	6afde8b42c89d1e3
+393	736	7899911852528719	GitHash/GitHash.exe	70fbfc6faee7fea4
+0	18	0	clean	9992afb1f91dc381
+1	554	7899914204108294	GitHash/CMakeFiles/GitHash.dir/GitHash.cpp.obj	6afde8b42c89d1e3
+555	949	7899914207524465	GitHash/GitHash.exe	70fbfc6faee7fea4

@@ -1,3 +1,3 @@
 #pragma once
 
-#define GIT_COMMIT_HASH        "49dd19d019f8162185e42df07aa9dd5503ab959e"
+#define GIT_COMMIT_HASH        "21bb3a2f2e7855b30f1188e4a3f384dcae344117"

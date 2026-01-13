@@ -19,7 +19,7 @@ find_package(Git QUIET)
 
 if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
     execute_process(
-        COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+        COMMAND git rev-parse HEAD
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_COMMIT_HASH
         OUTPUT_STRIP_TRAILING_WHITESPACE
