@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GitHash"
   ],
-  "SelectedNode": "\\run.bat",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": true
 }
