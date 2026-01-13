@@ -14,20 +14,18 @@ if "%~1"=="" (
 )
 
 REM ------------------------------
-REM CLEAN (removes all builds)
+REM CLEAN (remove all builds)
 REM ------------------------------
 if /I "%~1"=="Clean" (
     echo ==============================
     echo Cleaning ALL build artifacts
     echo ==============================
-
     if exist build (
         rmdir /s /q build
         echo Build directory removed
     ) else (
         echo Nothing to clean
     )
-
     exit /b 0
 )
 
@@ -62,7 +60,7 @@ if not exist build (
 cd build || exit /b 1
 
 REM ------------------------------
-REM Configure (once per build dir)
+REM Configure (Visual Studio / multi-config)
 REM ------------------------------
 cmake .. || exit /b 1
 
